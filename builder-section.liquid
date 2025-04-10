@@ -46,7 +46,6 @@
           const productId = card.dataset.productId;
           selectedProductsByStep[stepIndex] = productId;
 
-          // Disable other buttons in this step
           productCards.forEach(c => {
             const btn = c.querySelector(".select-product-btn");
             btn.disabled = true;
@@ -54,13 +53,11 @@
             btn.innerText = (c === card) ? "Selected" : "Select";
           });
 
-          // Scroll to next step
           const nextStepEl = document.getElementById(`step-${parseInt(stepIndex) + 1}`);
           if (nextStepEl) {
             nextStepEl.scrollIntoView({ behavior: 'smooth' });
           }
 
-          // Enable checkout only when all steps are selected
           const totalSteps = document.querySelectorAll(".builder-step").length;
           if (Object.keys(selectedProductsByStep).length === totalSteps) {
             checkoutBtn.disabled = false;
